@@ -27,6 +27,8 @@ void AMyCharacter::BeginPlay()
 void AMyCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	FVector newLocation = GetActorLocation() + (MovementDirection * DeltaTime * 500.0);
+	SetActorLocation(newLocation);
 	if (time > 2.0)
 	{
 		time = 0.0;
@@ -52,12 +54,18 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	InputComponent->BindAction("Sprint", IE_Pressed, this, &AMyCharacter::Sprint);
-	InputComponent->BindAction("Sprint", IE_Released, this, &AMyCharacter::Walk);
-	InputComponent->BindAction("MoveForward", IE_Pressed, this, &AMyCharacter::Move);
-	InputComponent->BindAction("MoveRight", IE_Pressed, this, &AMyCharacter::Move);
+	PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacter::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacter::MoveRight);
 }
 
-
+void AMyCharacter::MoveForward(float Value)
+{
+	MovementDirection.X = FMath::Clamp(Value, -1.0, 1.0);
+}
+void AMyCharacter::MoveRight(float Value)
+{
+	MovementDirection.Y = FMath::Clamp(Value, -1.0, 1.0);
+}
 void AMyCharacter::Sprint()
 {
 	this->speed += 10;

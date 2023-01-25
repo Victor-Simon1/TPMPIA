@@ -4,26 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "MyCharacter.generated.h"
+#include "Guard.generated.h"
 
 UCLASS()
-class TPMPIA2_API AMyCharacter : public ACharacter
+class TPMPIA2_API AGuard : public ACharacter
 {
 	GENERATED_BODY()
 
-
 public:
-	UPROPERTY(EditAnyWhere)
-	FVector MovementDirection;
-	float speed;
-	float time;
+
+	//Set properties
+	float rangeDetection;
 	// Sets default values for this character's properties
-	AMyCharacter();
-	void Sprint();
-	void Walk();
-	void Move();
-	void MoveForward(float Value);
-	void MoveRight(float Value);
+	AGuard();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
