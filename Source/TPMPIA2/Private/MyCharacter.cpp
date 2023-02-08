@@ -53,9 +53,9 @@ void AMyCharacter::Tick(float DeltaTime)
 void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	InputComponent->BindAction("Sprint", IE_Pressed, this, &AMyCharacter::Sprint);
-	PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacter::MoveForward);
-	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacter::MoveRight);
+//	InputComponent->BindAction("Sprint", IE_Pressed, this, &AMyCharacter::Sprint);
+	//PlayerInputComponent->BindAxis("MoveForward", this, &AMyCharacter::MoveForward);
+//	PlayerInputComponent->BindAxis("MoveRight", this, &AMyCharacter::MoveRight);
 }
 
 void AMyCharacter::MoveForward(float Value)
@@ -70,14 +70,14 @@ void AMyCharacter::Sprint()
 {
 	this->speed += 10;
 //	Super::Tick(DeltaTime);
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Sprint"));
+	//if (GEngine)
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Sprint"));
 }
 void AMyCharacter::Walk()
 {
 	this->speed -= 10;
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Walk"));
+	//if (GEngine)
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Walk"));
 
 }
 void AMyCharacter::Move()
